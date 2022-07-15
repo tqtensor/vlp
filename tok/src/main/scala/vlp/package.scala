@@ -1,7 +1,6 @@
 package vlp
 
-/**
-  * A package object containing some utility functions.
+/** A package object containing some utility functions.
   */
 
 package object VLP {

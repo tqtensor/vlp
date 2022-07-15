@@ -3,13 +3,14 @@ package vlp.tok
 import scala.util.matching.Regex
 import scala.collection.mutable
 
-/**
-  * phuonglh
-  * 
-  * A sentence detection which uses simple heuristic to split a text into sentences.
+/** phuonglh
+  *
+  * A sentence detection which uses simple heuristic to split a text into
+  * sentences.
   */
 object SentenceDetection {
-  val pattern: Regex = "([\\.?!…;:+-]+|[abcdef]\\))[\\s]+[\"“]?[A-ZĐÀÁẢÃẠẤẦẨẪẬƯỪỨỬỮỰÙÚỦŨỤÔỒỐỔỖỘƠỜỚỞỠỢÈÉẺẼẸÊỀẾỂỄỆÌÍỈĨỊỲÝỶỸỴ\\d]".r
+  val pattern: Regex =
+    "([\\.?!…;:+-]+|[abcdef]\\))[\\s]+[\"“]?[A-ZĐÀÁẢÃẠẤẦẨẪẬƯỪỨỬỮỰÙÚỦŨỤÔỒỐỔỖỘƠỜỚỞỠỢÈÉẺẼẸÊỀẾỂỄỆÌÍỈĨỊỲÝỶỸỴ\\d]".r
 
   def run(text: String, numberOfSentences: Int = Int.MaxValue): Seq[String] = {
     // the character '\u00a0' is also used as a space character in many websites; replace it with the proper whitespace

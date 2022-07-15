@@ -45,14 +45,8 @@ lazy val biz = (project in file("biz"))
         "com.intel.analytics.zoo" % "analytics-zoo-bigdl_0.13.0-spark_3.0.0" % "0.11.0",
     ),
     assemblyMergeStrategy in assembly := {
-      case x if x.contains("com/intel/analytics/bigdl/bigquant/") => MergeStrategy.first
-      case x if x.contains("com/intel/analytics/bigdl/mkl/") => MergeStrategy.first
-      case x if x.contains("org/tensorflow/") => MergeStrategy.first
-      case x if x.contains("google/protobuf") => MergeStrategy.first
-      case x if x.contains("org/apache/spark/unused") => MergeStrategy.first
-      case x =>
-        val oldStrategy = (assemblyMergeStrategy in assembly).value
-        oldStrategy(x)
+      case PathList("module-info.class") => MergeStrategy.discard
+      case _ => MergeStrategy.first
     }
   )
 
