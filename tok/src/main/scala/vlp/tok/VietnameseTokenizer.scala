@@ -13,7 +13,8 @@ case class ConfigTokenizer(
     master: String = "local[*]",
     driverHost: String = "0.0.0.0",
     uiPort: Int = 9696,
-    totalCores: Int = 8,
+    totalCores: Int = 9,
+    executorCores: Int = 3,
     executorMemory: String = "8g",
     driverMemory: String = "8g",
     minPartitions: Int = 1,
@@ -102,7 +103,10 @@ object VietnameseTokenizer {
         .text("ui port, default is 9696")
       opt[Int]('t', "totalCores")
         .action((x, conf) => conf.copy(totalCores = x))
-        .text("total number of cores, default is 8")
+        .text("total number of cores, default is 9")
+      opt[Int]('c', "executorCores")
+        .action((x, conf) => conf.copy(executorCores = x))
+        .text("executor cores, default is 3")
       opt[String]('e', "executorMemory")
         .action((x, conf) => conf.copy(executorMemory = x))
         .text("executor memory, default is 8g")
@@ -135,6 +139,7 @@ object VietnameseTokenizer {
           .appName("vietnameseTokenizer")
           .master(config.master)
           .config("spark.cores.max", config.totalCores.toString)
+          .config("spark.executor.cores", config.executorCores.toString)
           .config("spark.executor.memory", config.executorMemory)
           .config("spark.driver.memory", config.driverMemory)
           .config("spark.driver.host", config.driverHost)
