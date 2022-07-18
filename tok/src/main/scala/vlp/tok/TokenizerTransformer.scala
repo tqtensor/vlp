@@ -91,7 +91,6 @@ class TokenizerTransformer(override val uid: String)
       sb.toString.trim
     }
   }
-
   override protected def outputDataType = StringType
 }
 
@@ -126,6 +125,5 @@ object TokenizerTransformer
     case WordShape.percentage(_*) => "[NUM]"
     case _                        => token
   }
-
   override def load(path: String): TokenizerTransformer = super.load(path)
 }
